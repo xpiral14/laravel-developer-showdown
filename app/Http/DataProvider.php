@@ -30,7 +30,7 @@ class DataProvider
         foreach ($users as $user) {
             $userLog = collect($this->getUserPayload($user))->map(fn($value, $key) => "$key: $value")->join(', ');
 
-            Log::driver('dataprovider')->info("[$user->id] $userLog");
+            Log::channel('dataprovider')->info("[$user->id] $userLog");
         }
         $usersPayload = [
             'batches' => [
