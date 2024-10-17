@@ -19,7 +19,7 @@ class SyncUsersWithProviderInBatchJob implements ShouldQueue
     {
     }
 
-    public function handle(): void
+    public function handle(): int
     {
         $provider = new DataProvider();
         User::query()
@@ -34,6 +34,7 @@ class SyncUsersWithProviderInBatchJob implements ShouldQueue
                 }
             );
 
+        return 0;
     }
 
     /**
