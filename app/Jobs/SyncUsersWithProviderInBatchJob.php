@@ -7,11 +7,9 @@ use App\Models\UnsynchronizedUser;
 use App\Models\User;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Queue\Middleware\RateLimitedWithRedis;
-use Illuminate\Support\Facades\Log;
 
 class SyncUsersWithProviderInBatchJob implements ShouldQueue
 {
@@ -50,7 +48,7 @@ class SyncUsersWithProviderInBatchJob implements ShouldQueue
 
     private function makeUsersSynchronized(Collection $users): void
     {
-        UnsynchronizedUser::whereIn('id', $users->pluck('id'))->update(['data' => []]);
+        UnsynchronizedUser::whereIn('user_id', $users->pluck('id'))->update(['data' => []]);
     }
 
 
